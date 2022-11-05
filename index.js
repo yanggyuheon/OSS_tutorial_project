@@ -1,32 +1,33 @@
+// 
+require('dotenv').config();
+const fs = require("fs");
+const {RTMClient} = require('@slack/rtm-api')
+
 let token;
 try {
-	token = fs.readFileSync('./token').toString('utf-8');
+	token = fs.readFileSync('./token').toString('utf-8')
 } catch (err) {
 	console.error(err);
 }
-console.log(token);
-const rtm = new RTMClient(token);
-const {RTMClient} = require('@slack/rtm-api');
-var token = '';
 
-var rtm = new RTMClient(token);
+const rtm = new RTMClient(token);
+
 rtm.start();
-var greeting = require('./greeting');
-var square = require('./square');
+const greeting = require('./greeting.js');
+const square = require('./square.js');
 rtm.on('message', function (message){
 	var channel = message.channel;
 	var text = message.text;
 	
-
 	if(!isNaN(text)){
 		square(rtm, text, channel);
-	}else{
+	} else {
 		switch(text){
 			case 'hi':
-				greeting(rtm.channel);
+				greeting(rtm, channel);
 				break;
 			default:
-				rtm.sendMessage('Im alive', channel);
+				rtm.sendMessage('I`m alive', channel);
 		}
 	}
 	

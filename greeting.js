@@ -1,4 +1,4 @@
-var greeting = function(rtm,channel){
+var greeting = function(rtm, channel){
 	console.log('say hello');
 	rtm.sendMessage('Hello', channel);
 }
