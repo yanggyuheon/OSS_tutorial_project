@@ -2,7 +2,7 @@
 // hook checking
 
 const { RTMClient } = require('@slack/rtm-api');
-const fs = require('fs' );
+const fs = require('fs');
 const greeting = require('./greeting');
 const square = require('./square');
 require('dotenv').config();
