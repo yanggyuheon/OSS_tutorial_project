@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo "pre_commit"
-eslint . --ext .js
-echo "@@@@@@@@@@\n"
-# npx lint-staged
+#  echo "pre_commit"
+# eslint . --ext .js
+npx lint-staged

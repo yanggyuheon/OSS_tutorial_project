@@ -11,7 +11,7 @@ try {
 } catch (err) {
   console.error(err);
 }
-const test = 2;
+const test = 3;
 console.log(test);
 const rtm = new RTMClient(token);
 
