@@ -18,6 +18,7 @@ rtm.on('message', (message) => {
   const { channel } = message;
   const { text } = message;
 
+  // eslint-disable-next-line no-restricted-globals
   if (!isNaN(text)) {
     square(rtm, text, channel);
   } else {
