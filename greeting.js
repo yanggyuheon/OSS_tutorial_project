@@ -1,5 +1,5 @@
 const greeting = function (rtm, channel) {
-  console.log("say hello1");
+  console.log("say hello");
   rtm.sendMessage("Hello", channel);
 };
 module.exports = greeting;
