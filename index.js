@@ -1,4 +1,3 @@
-// eslint-disable-next-line object-curly-spacing
 const {RTMClient} = require('@slack/rtm-api');
 const fs = require('fs');
 const greeting = require('./greeting');
