@@ -14,7 +14,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "husky": "^8.0.2",
+    "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1"
   },
@@ -27,8 +27,16 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "lint-staged": {
     "*.js": "eslint --cache --fix"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellemon/OSS_tutorial_project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hellemon/OSS_tutorial_project/issues"
+  },
+  "homepage": "https://github.com/hellemon/OSS_tutorial_project#readme",
+  "description": ""
 }
