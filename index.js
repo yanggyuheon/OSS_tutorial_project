@@ -10,8 +10,7 @@ try {
 } catch (err) {
   console.error(err);
 }
-const test = 10;
-console.log(test);
+
 const rtm = new RTMClient(token);
 
 rtm.start();
@@ -23,7 +22,7 @@ rtm.on("message", (message) => {
   if (!Number.isNaN(Number(text))) {
     square(rtm, text, channel);
   } else {
-    // text - 소문조라 변환해서 HI, Hi, hI, hi 인식하도록
+    // text - 소문자로 변환해서 HI, Hi, hI, hi 인식하도록
     switch (text.toLowerCase()) {
       case "hi":
         greeting(rtm, channel);
