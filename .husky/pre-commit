@@ -3,3 +3,4 @@
 
 echo "Husky"
 eslint . --ext .js
+npx lint-staged
