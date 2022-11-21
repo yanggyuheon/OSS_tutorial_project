@@ -8,8 +8,7 @@ const today = new Date();
 const url = "https://sobi.chonbuk.ac.kr/menu/week_menu.php";
 const selector =
   `#contents > div.contentsArea.WeekMenu` +
-  `> .section > ` +
-  `div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(${
+  `> .section:eq(0) > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(${
     today.getDay() + 2
   }) > ul > li`;
 
@@ -34,8 +33,8 @@ async function webScraping() {
   return res.filter(Boolean);
 }
 
-// webScraping().then((res) => {
-//   console.log(res);
-// });
+webScraping().then((res) => {
+  console.log(res);
+});
 
 exports.webScraping = webScraping;
