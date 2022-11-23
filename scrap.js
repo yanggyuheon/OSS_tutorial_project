@@ -32,11 +32,11 @@ const scrap = function (rtm, channel) {
 
   webScraping().then((res) => {
     let menu = ""; // 메뉴를 한 줄로 저장할 변수
-    let score = 1; // 기본 점수
+    let score = 1; // 기본 점수 1점으로
 
     // 읽어온 여러 메뉴 반복문을 통해, string type + 점수 변경
     res.forEach((value) => {
-      // 기존 메뉴 문자열 + (, 메뉴이름) String type으로 늘려가기
+      // 기존 메뉴 문자열 + (메뉴이름, ) String type으로 늘려가기
       menu += `${value}, `;
 
       // 메뉴명에 포함여부에 따라 점수 +, - 변경 / 메뉴에 점수 변경 2개 이상일 때 모두 찾기위해 각각 if문으로
