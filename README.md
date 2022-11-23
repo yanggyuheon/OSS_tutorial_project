@@ -24,7 +24,7 @@
 
 그 후 예를 들어 `"10/15"`처럼 `"mm/dd"`를 입력하면, `"10/15는 개교기념일 입니다."`처럼 해당 날짜의 학사 일정을 응답합니다.
 
-![image](https://user-images.githubusercontent.com/112867282/203096400-16b02963-ed7c-43f5-a641-51481259ecf1.png)
+![image](https://user-images.githubusercontent.com/40075034/203595104-9ac40e25-f709-48c4-a83a-9c7c1f834d7d.png)
 
 ---
 
