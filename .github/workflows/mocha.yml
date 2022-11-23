@@ -24,7 +24,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: npm install, build, and test
-      run:
+      run: |
         npm install mocha -g
         npm install dotenv
         mocha feature1.spec.js
