@@ -2,22 +2,22 @@
   "dependencies": {
     "@slack/rtm-api": "^6.0.0",
     "dotenv": "^16.0.3",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "line-reader": "^0.4.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
-    "eslint": "^8.2.0",
+    "eslint": "^8.27.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
-    "prettier": "2.7.1"
+    "prettier": "^2.7.1"
   },
   "name": "oss_project",
   "version": "1.0.0",
