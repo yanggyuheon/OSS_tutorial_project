@@ -2,7 +2,7 @@ name: Mocha test
 
 on:
   push:
-    branches: [main]
+    branches: [main, Ygh_branch]
   pull_request:
     branches: [main, develop]
 
