@@ -6,6 +6,7 @@ const square = require("./square");
 require("dotenv").config();
 const classresult = require("./class_result")
 
+
 let token;
 try {
   token = fs.readFileSync("./token").toString("utf-8");
@@ -32,6 +33,7 @@ rtm.start();
 rtm.on("message", (message) => {
   const { channel } = message;
   const { text } = message;
+
 
   // text가 숫자인 경우
   if (!Number.isNaN(Number(text))) {
