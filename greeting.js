@@ -4,7 +4,7 @@ const greeting = function (rtm, channel) {
   const random = Math.floor(Math.random() * 3);
   console.log(`greeting ver_${random + 1}`);
 
-  // Mocha => random : 0,1,2 이면 success, 다른 값이면 error
+  // Mocha => random : 0,1,2 이면 success, 다른 값이면 error.
   try {
     if (random === 0) {
       console.log("say Hello");
