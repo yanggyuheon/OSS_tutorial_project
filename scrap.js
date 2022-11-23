@@ -29,7 +29,7 @@ async function webScraping() {
     res.push($(this).text());
   });
 
-  // scrap한 li에 빈 배열들을 제거하기 위한 .fliter 참고 : "https://hianna.tistory.com/423"
+  // scrap한 li중 빈 배열들을 제거하기 위한 .fliter 참고 : "https://hianna.tistory.com/423"
   return res.filter(Boolean);
 }
 

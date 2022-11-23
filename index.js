@@ -1,6 +1,7 @@
 const { RTMClient } = require("@slack/rtm-api");
 const fs = require("fs");
 const greeting = require("./greeting");
+const haksa = require("./haksa");
 const square = require("./square");
 require("dotenv").config();
 
@@ -22,9 +23,13 @@ rtm.on("message", (message) => {
   if (!isNaN(text)) {
     square(rtm, text, channel);
   } else {
-    switch (text) {
-      case "hi":
+    // switch문 정규식 사용을 위한 테스트 변경, 추후 수정 가능성 있음
+    switch (true) {
+      case text.toLowerCase() === "hi":
         greeting(rtm, channel);
+        break;
+      case /^([1-9]|1[0-2])\/([1-9]|[12][0-9]|3[01])$/.test(text):
+        haksa(rtm, channel, text);
         break;
       default:
         rtm.sendMessage("I`m alive", channel);
