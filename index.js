@@ -37,15 +37,3 @@ rtm.on("message", (message) => {
     }
   }
 });
-
-// ///////////////////////////// two of tokens
-// let token;
-// try {
-//   const tmp1 = fs.readFileSync("./token").toString("utf-8");
-//   // console.log(tmp1);
-//   const tmp2 = tmp1.split("\n");
-//   // console.log(tmp2.at(2));
-//   token = tmp2.at(2).trim();
-// } catch (err) {
-//   console.error(err);
-// }
