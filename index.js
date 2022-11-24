@@ -5,7 +5,7 @@ const greeting = require("./greeting");
 const square = require("./square");
 require("dotenv").config();
 const classresult = require("./class_result")
-
+const scrap = require("./scrap");
 
 let token;
 try {
@@ -49,9 +49,13 @@ rtm.on("message", (message) => {
       case "hi":
         greeting(rtm, channel);
         break;
+
+      case "오늘 밥 뭐야":
+        scrap(rtm, channel);
+        break;
+
       default:
         rtm.sendMessage("I`m alive", channel);
-        
     }
     
   }
