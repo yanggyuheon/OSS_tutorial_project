@@ -40,4 +40,4 @@
 
 학생이 `"컴퓨터공학부"`와 같은 학과 이름을 입력하면, `"공과대학 7호관 224호"`처럼 해당 학과의 사무실 위치를 응답합니다.
 
-![image](https://user-images.githubusercontent.com/40075034/203675636-098729b1-de7f-4617-baae-c85ac07a36b0.png)
+![image](https://user-images.githubusercontent.com/40075034/203675940-4fa2f9ae-c40b-46b5-977c-b4669d6d9905.png)
