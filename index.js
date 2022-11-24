@@ -20,8 +20,7 @@ rtm.on("message", (message) => {
   const { channel } = message;
   const { text } = message;
 
-  // eslint-disable-next-line no-restricted-globals
-  if (!isNaN(text)) {
+  if (!Number.isNaN(Number(text))) {
     square(rtm, text, channel);
   } else {
     // switch문 정규식 사용을 위한 테스트 변경, 추후 수정 가능성 있음
