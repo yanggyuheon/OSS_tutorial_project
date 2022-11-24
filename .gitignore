@@ -4,8 +4,5 @@ token
 # 초기화해야하는 파일
 node_modules/
 
-# 학사 정보 파일
-haksa.txt
-
 # eslint cache file
 .eslintcache
