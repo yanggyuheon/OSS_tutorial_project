@@ -4,7 +4,7 @@ const greeting = function (rtm, channel) {
   const random = Math.floor(Math.random() * 3);
   console.log(`greeting ver_${random + 1}`);
 
-  // Mocha => random : 0,1,2 이면 success, 다른 값이면 error
+  // Mocha => random : 0,1,2 이면 success, 다른 값이면 error.
   try {
     if (random === 0) {
       console.log("say Hello");
@@ -12,11 +12,20 @@ const greeting = function (rtm, channel) {
     } else if (random === 1) {
       console.log("say bonjour");
       rtm.sendMessage("bonjour", channel);
-    } else {
+    } else if (random === 2) {
       console.log("say 안녕하세요");
       rtm.sendMessage("안녕하세요", channel);
+    } // random : 0 ~ 2 이외 값
+    else {
+      console.error("error");
+      rtm.sendMessage("Error", channel);
     }
-    return Promise.resolve("success");
+
+    if (random === 0 || random === 1 || random === 2)
+      return Promise.resolve("success");
+
+    // random : 0 ~ 2 아닌 경우 error
+    return Promise.resolve("error");
   } catch (error) {
     console.error("error");
     return Promise.resolve("error");

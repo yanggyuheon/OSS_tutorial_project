@@ -3,3 +3,6 @@ token
 
 # 초기화해야하는 파일
 node_modules/
+
+# "*.js": "eslint --cache --fix"
+.eslintcache

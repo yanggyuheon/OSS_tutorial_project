@@ -25,7 +25,7 @@ const greeting = require("./greeting");
 
 let res;
 
-describe("테스트를 시작합니다", async () => {
+describe("Feature#1 테스트를 시작합니다", async () => {
   before(async () => {
     res = await greeting(rtm, channel);
     return res;
