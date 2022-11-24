@@ -10,6 +10,7 @@ try {
 } catch (err) {
   console.error(err);
 }
+
 const channel = "D047VRXT0C9";
 
 const rtm = new RTMClient(token);
@@ -19,6 +20,7 @@ const rtm = new RTMClient(token);
 })();
 
 let res;
+
 let runmmdd;
 
 for (let i = 0; i < 10; i += 1) {

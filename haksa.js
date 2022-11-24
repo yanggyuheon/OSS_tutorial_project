@@ -5,7 +5,6 @@ const readTxtnSplit = function () {
   const res = {};
   const strArr = fs.readFileSync("./haksa.txt").toString("utf-8");
   scheduleList = strArr.split(/\r\n/);
-  // console.log(scheduleList);
   scheduleList.forEach((scStr) => {
     const tmpList = scStr.split(/ : /);
     // console.log(tmpList);

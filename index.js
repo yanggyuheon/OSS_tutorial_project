@@ -15,6 +15,7 @@ try {
 const rtm = new RTMClient(token);
 
 rtm.start();
+
 rtm.on("message", (message) => {
   const { channel } = message;
   const { text } = message;
@@ -37,7 +38,7 @@ rtm.on("message", (message) => {
   }
 });
 
-// ////////////////////////////// two of tokens
+// ///////////////////////////// two of tokens
 // let token;
 // try {
 //   const tmp1 = fs.readFileSync("./token").toString("utf-8");
