@@ -10,7 +10,6 @@ const scrap = require("./scrap");
 
 
 
-
 let token;
 try {
   token = fs.readFileSync("./token").toString("utf-8");
