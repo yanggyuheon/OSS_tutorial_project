@@ -9,7 +9,7 @@ const url = "https://sobi.chonbuk.ac.kr/menu/week_menu.php";
 const selector =
   `#contents > div.contentsArea.WeekMenu` +
   `> .section:eq(0) > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(${
-    today.getDay() + 2
+    today.getDay() + 3
   }) > ul > li`;
 
 // 요일 테스트 하시려면 getDay의 반환값이 일요일(0) ~ 토요일(6)이기 때문에 생각해서 해주세요. (기본값 2(오늘), 식단 리스트 3~7),
