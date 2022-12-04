@@ -13,6 +13,14 @@ try {
 } catch (err) {
   console.error(err);
 }
+const assert = require("assert");
+const classresult = require("./class_result");
+
+const classarr = [
+  "Architectural Engineering",
+  "Mechanical Engineering",
+  "Chemical Engineering",
+];
 
 const rtm = new RTMClient(token);
 
@@ -20,18 +28,16 @@ const rtm = new RTMClient(token);
   await rtm.start().catch(console.error);
 })();
 
-const assert = require("assert");
-const greeting = require("./greeting");
-
 let res;
-
-describe("Feature#1 테스트를 시작합니다", async () => {
+describe("테스트를 시작합니다", async () => {
   before(async () => {
-    res = await greeting(rtm, channel);
+    const randomPick = classarr[Math.floor(Math.random() * classarr.length)];
+    const idx = classarr.indexOf(randomPick);
+    res = await classresult(rtm, randomPick, idx, channel);
     return res;
   });
 
-  it("인사 모듈 테스트", (done) => {
+  it("학과사무실 모듈 테스트", (done) => {
     console.log(res);
     assert.equal(res, "success");
     done();

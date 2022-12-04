@@ -1,4 +1,4 @@
-name: feature2(haksa) test
+name: jms_branch push test
 
 on:
   push:
@@ -24,8 +24,8 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install dotenv
           npm install mocha -g
+          mocha feature1.spec.js
           mocha feature2.spec.js
         env:
           CI: true
