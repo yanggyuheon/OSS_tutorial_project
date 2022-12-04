@@ -34,7 +34,9 @@
 
 ![image](https://user-images.githubusercontent.com/112867282/203094783-7acbc23e-e5e1-413a-abf6-748dba9fe03a.png)
 
----
+또한 `"이번주 뭐 나와"`를 입력하면 주간 진수원 중식 식단과, 반찬에 따라 평가를 진행하여 1 ~ 3 사이의 점수를 `"★☆☆", "★★☆", "★★★"` 별로 응답합니다.
+
+![image](https://user-images.githubusercontent.com/40075034/205478872-44d9ec2d-b2e2-4529-aedf-0b5b5e467ef9.png)
 
 ### 주요기능 - 4) 학과 사무실 안내
 

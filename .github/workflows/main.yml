@@ -28,5 +28,6 @@ jobs:
           npm install dotenv
           mocha feature1.spec.js
           mocha feature2.spec.js
+          mocha feature4.spec.js
         env:
           CI: true
