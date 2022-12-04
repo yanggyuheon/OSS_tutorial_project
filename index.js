@@ -8,6 +8,9 @@ const classresult = require("./class_result");
 require("dotenv").config();
 const scrap = require("./scrap");
 
+
+
+
 let token;
 try {
   token = fs.readFileSync("./token").toString("utf-8");
@@ -21,7 +24,9 @@ try {
   let i = 0;
   lineReader.eachLine("./dept.txt", (line) => {
     const string = line.substr(0, line.indexOf("-") - 1);
-    classarr[i] = string;
+    const stringlower = string.toLocaleLowerCase()
+    const laststring = stringlower.replace(/ /g,"")
+    classarr[i] = laststring;
     i += 1;
   });
 } catch (err) {
@@ -38,7 +43,7 @@ rtm.on("message", (message) => {
 
   // switch문 정규식 사용을 위한 테스트 변경
   // case 별로 if문같이 사용
-  if (classarr.includes(text)) {
+  if (classarr.includes((text.toLowerCase()).replace(/ /g, ""))) {
     const idx = classarr.indexOf(text);
     classresult(rtm, text, idx, channel);
   } else {
