@@ -44,8 +44,8 @@ rtm.on("message", (message) => {
   // switch문 정규식 사용을 위한 테스트 변경
   // case 별로 if문같이 사용
   if (classarr.includes((text.toLowerCase()).replace(/ /g, ""))) {
-    const idx = classarr.indexOf(text);
-    classresult(rtm, text, idx, channel);
+    const idx = classarr.indexOf((text.toLowerCase()).replace(/ /g, ""));
+    classresult(rtm, (text.toLowerCase()).replace(/ /g, ""), idx, channel);
   } else {
     switch (true) {
       case !Number.isNaN(Number(text)):
