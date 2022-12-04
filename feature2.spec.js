@@ -23,8 +23,8 @@ let res;
 
 let runmmdd;
 
-for (let i = 0; i < 10; i += 1) {
-  runmmdd = `${Math.floor(Math.random() * 12)}/${Math.floor(
+for (let i = 0; i < 5; i += 1) {
+  runmmdd = `${Math.floor(Math.random() * 11) + 1}/${Math.floor(
     Math.random() * 31
   )}`;
 }
