@@ -4,8 +4,7 @@ const { RTMClient } = require("@slack/rtm-api");
 
 const fs = require("fs");
 
-const channel = "D04BL0HNXM2";
-
+const channel = "D047VRXT0C9";
 let token;
 
 try {
@@ -14,9 +13,13 @@ try {
   console.error(err);
 }
 const assert = require("assert");
-const classresult = require("./class_result")
+const classresult = require("./class_result");
 
-const classarr = ['Architectural Engineering', 'Mechanical Engineering','Chemical Engineering'];
+const classarr = [
+  "Architectural Engineering",
+  "Mechanical Engineering",
+  "Chemical Engineering",
+];
 
 const rtm = new RTMClient(token);
 
@@ -24,14 +27,12 @@ const rtm = new RTMClient(token);
   await rtm.start().catch(console.error);
 })();
 
-
-
 let res;
 describe("테스트를 시작합니다", async () => {
   before(async () => {
     const randomPick = classarr[Math.floor(Math.random() * classarr.length)];
     const idx = classarr.indexOf(randomPick);
-    res = await classresult(rtm, randomPick, idx ,channel);
+    res = await classresult(rtm, randomPick, idx, channel);
     return res;
   });
 
@@ -40,5 +41,4 @@ describe("테스트를 시작합니다", async () => {
     assert.equal(res, "success");
     done();
   });
-
 });

@@ -1,8 +1,8 @@
-name: Mocha test
+name: jms_branch push test
 
 on:
   push:
-    branches: [main]
+    branches: [Jms_branch, main]
   pull_request:
     branches: [main, develop]
 
@@ -24,8 +24,10 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install dotenv
           npm install mocha -g
+          npm install dotenv
           mocha feature1.spec.js
+          mocha feature2.spec.js
+          mocha feature4.spec.js
         env:
           CI: true
