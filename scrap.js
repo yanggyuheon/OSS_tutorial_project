@@ -89,7 +89,7 @@ const todayScrap = function (rtm, channel) {
       const todayMenu = res.at(today.getDay() - 1);
       const score = scoring(todayMenu); // 기본 점수 1점으로
 
-      res.forEach((value) => {
+      todayMenu.forEach((value) => {
         menu += `${value}, `;
       });
 
