@@ -1,5 +1,7 @@
 const { RTMClient } = require("@slack/rtm-api");
 const fs = require("fs");
+//  참고 : https://doongdoongeee.tistory.com/148
+const { spawn } = require("child_process");
 // 사용하기 전 npm instll line-reader 할것
 const lineReader = require("line-reader");
 const greeting = require("./greeting");
@@ -45,9 +47,34 @@ rtm.on("message", (message) => {
 
   // switch문 정규식 사용을 위한 테스트 변경
   // case 별로 if문같이 사용
-  if (classarr.includes(text.toLowerCase().replace(/ /g, "")) && flags === 1) {
+  if (flags === 1) {
     const idx = classarr.indexOf(text.toLowerCase().replace(/ /g, ""));
-    classresult(rtm, text.toLowerCase().replace(/ /g, ""), idx, channel);
+    // 일치하는 학과가 있는 경우, 없는 경우 if-else
+    if (idx !== -1) {
+      classresult(rtm, text.toLowerCase().replace(/ /g, ""), idx, channel);
+    } else {
+      // spawn을 통해 "python main.py" 명령어 실행
+      // 순서 : python파일명, dept array, input dept text
+      const result = spawn("py", [
+        "./main.py",
+        classarr,
+        text.toLowerCase().replace(/ /g, ""),
+      ]);
+
+      // stdout의 'data'이벤트리스너로 실행결과를 받는다.
+      result.stdout.on("data", (data) => {
+        const resulttext = data.toString().slice(0, data.toString().length - 2);
+
+        const idx2 = classarr.indexOf(resulttext);
+        rtm.sendMessage(`${resulttext}을 말씀하시는 건가요?\n`, channel);
+        classresult(rtm, resulttext, idx2, channel);
+      });
+
+      // 에러 발생 시, stderr의 'data'이벤트리스너로 실행결과를 받는다.
+      result.stderr.on("data", (data) => {
+        console.log("error", data.toString());
+      });
+    }
     flags = 0;
   } else {
     switch (true) {
