@@ -39,33 +39,34 @@ async function webScraping() {
 }
 
 function scoring(str) {
-  let score = 1; // 기본 점수 1점으로
+  let score = 2; // 기본 점수 2점으로
 
   str.forEach((value) => {
     // 1) 점수 + 경우
-    if (value.includes("갈치")) {
-      score += 1;
-    }
-    if (value.includes("감자")) {
-      score += 1;
-    }
-    if (value.includes("카레")) {
-      score += 1;
-    }
     if (value.includes("고기")) {
+      score += 1;
+    }
+    if (value.includes("새우")) {
+      score += 1;
+    }
+    if (value.includes("만두")) {
+      score += 1;
+    }
+    if (value.includes("두부")) {
       score += 1;
     }
 
     // 2) 점수 - 경우
-    if (value.includes("오이")) {
+    if (value.includes("쑥")) {
       score -= 1;
     }
-
+    if (value.includes("숙주")) {
+      score -= 1;
+    }
     if (value.includes("나물")) {
       score -= 1;
     }
-
-    if (value.includes("시금치")) {
+    if (value.includes("토마토")) {
       score -= 1;
     }
   });
