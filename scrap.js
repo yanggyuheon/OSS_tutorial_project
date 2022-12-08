@@ -91,11 +91,11 @@ function scoreToStar(score) {
 const todayScrap = function (rtm, channel) {
   console.log("일간메뉴 출력");
   try {
-    if (today.getDay() === 0 || today.getDay() === 6) {
-      rtm.sendMessage("주말에는 밥 안팔아요", channel);
-      return Promise.resolve("success");
-    }
     webScraping().then((res) => {
+      if (today.getDay() === 0 || today.getDay() === 6) {
+        rtm.sendMessage("주말에는 밥 안팔아요", channel);
+        return Promise.resolve("success");
+      }
       let menu = "";
       const todayMenu = res.at(today.getDay() - 1);
       const score = scoring(todayMenu);
@@ -110,7 +110,7 @@ const todayScrap = function (rtm, channel) {
       rtm.sendMessage(`${menu}\n${scoreToStar(score)}`, channel);
       return Promise.resolve("success");
     });
-    return Promise.resolve("error");
+    return Promise.resolve("success");
   } catch (error) {
     console.error("error");
     return Promise.resolve("error");
@@ -137,9 +137,8 @@ const weeklyScrap = function (rtm, channel) {
           channel
         );
       }
-      return Promise.resolve("success");
     });
-    return Promise.resolve("error");
+    return Promise.resolve("success");
   } catch (error) {
     console.error("error");
     return Promise.resolve("error");
