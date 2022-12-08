@@ -23,38 +23,38 @@ const readTxtnSplit = function () {
 const fsdept = function (rtm, channel, text) {
   const [deptDict, deptUpperList, deptLowerList] = readTxtnSplit();
   const compText = text.toLowerCase().replace(/ /g, "");
+
   try {
     if (deptLowerList.includes(compText) === true) {
       console.log(deptDict[compText]);
+
       rtm.sendMessage(
         `입력하신 학과의 정보는 ${deptDict[compText]}입니다.`,
         channel
       );
-      Promise.resolve("success");
-    } else {
-      // spawn을 통해 "python main.py" 명령어 실행 , python파일명, dept array, input dept text 순서
-      const result = spawn("python", ["./main.py", deptLowerList, compText]);
-      // stdout의 'data'이벤트리스너로 실행결과를 받는다.
-      result.stdout.on("data", (data) => {
-        const resultText = data.toString().slice(0, data.toString().length - 2);
-        const idx = deptLowerList.indexOf(resultText);
-
-        console.log(deptDict[resultText]);
-        rtm.sendMessage(
-          `${deptUpperList[idx]}을 말씀하시는 건가요?\n입력하신 학과의 정보는 ${deptDict[resultText]}입니다.`,
-          channel
-        );
-      });
-      // 에러 발생 시, stderr의 'data'이벤트리스너로 실행결과를 받는다.
-      result.stderr.on("data", (data) => {
-        console.log("error", data.toString());
-      });
-      Promise.resolve("success");
+      return Promise.resolve("success");
     }
-    Promise.resolve("error");
+    // spawn을 통해 "python main.py" 명령어 실행 , python파일명, dept array, input dept text 순서
+    const result = spawn("py", ["./main.py", deptLowerList, compText]);
+    // stdout의 'data'이벤트리스너로 실행결과를 받는다.
+    result.stdout.on("data", (data) => {
+      const resultText = data.toString().slice(0, data.toString().length - 2);
+      const idx = deptLowerList.indexOf(resultText);
+
+      console.log(deptDict[resultText]);
+      rtm.sendMessage(
+        `${deptUpperList[idx]}을 말씀하시는 건가요?\n입력하신 학과의 정보는 ${deptDict[resultText]}입니다.`,
+        channel
+      );
+    });
+    // 에러 발생 시, stderr의 'data'이벤트리스너로 실행결과를 받는다.
+    result.stderr.on("data", (data) => {
+      console.log("error", data.toString());
+    });
+    return Promise.resolve("success");
   } catch (err) {
     console.error(err);
-    Promise.resolve("error");
+    return Promise.resolve("error");
   }
 };
 
