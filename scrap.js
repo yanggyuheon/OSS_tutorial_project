@@ -17,6 +17,14 @@ function selectorFunc(number = 0) {
   return str;
 }
 
+const dayDict = {
+  0: "월요일",
+  1: "화요일",
+  2: "수요일",
+  3: "목요일",
+  4: "금요일",
+};
+
 async function webScraping() {
   const url = "https://sobi.chonbuk.ac.kr/menu/week_menu.php";
   const res = [];
@@ -39,33 +47,34 @@ async function webScraping() {
 }
 
 function scoring(str) {
-  let score = 1; // 기본 점수 1점으로
+  let score = 2; // 기본 점수 2점으로
 
   str.forEach((value) => {
     // 1) 점수 + 경우
-    if (value.includes("갈치")) {
-      score += 1;
-    }
-    if (value.includes("감자")) {
-      score += 1;
-    }
-    if (value.includes("카레")) {
-      score += 1;
-    }
     if (value.includes("고기")) {
+      score += 1;
+    }
+    if (value.includes("새우")) {
+      score += 1;
+    }
+    if (value.includes("만두")) {
+      score += 1;
+    }
+    if (value.includes("두부")) {
       score += 1;
     }
 
     // 2) 점수 - 경우
-    if (value.includes("오이")) {
+    if (value.includes("쑥")) {
       score -= 1;
     }
-
+    if (value.includes("숙주")) {
+      score -= 1;
+    }
     if (value.includes("나물")) {
       score -= 1;
     }
-
-    if (value.includes("시금치")) {
+    if (value.includes("토마토")) {
       score -= 1;
     }
   });
@@ -81,33 +90,14 @@ function scoreToStar(score) {
 
 const todayScrap = function (rtm, channel) {
   console.log("일간메뉴 출력");
-  if (today.getDay() === 0 || today.getDay() === 6) {
-    rtm.sendMessage("주말에는 밥 안팔아요", channel);
-  } else {
+  try {
+    if (today.getDay() === 0 || today.getDay() === 6) {
+      rtm.sendMessage("주말에는 밥 안팔아요", channel);
+      return Promise.resolve("success");
+    }
     webScraping().then((res) => {
-      let menu = ""; // 메뉴를 한 줄로 저장할 변수
-      const todayMenu = res.at(today.getDay() - 1);
-      const score = scoring(todayMenu); // 기본 점수 1점으로
-
-      res.forEach((value) => {
-        menu += `${value}, `;
-      });
-
-      menu = menu.substring(0, menu.length - 2);
-
-      // 메뉴 및 별점 출력
-      rtm.sendMessage(`${menu}\n${scoreToStar(score)}`, channel);
-    });
-  }
-};
-
-const weeklyScrap = function (rtm, channel) {
-  console.log("주간메뉴 출력");
-  webScraping().then((res) => {
-    let i;
-    for (i = 0; i < 5; i += 1) {
       let menu = "";
-      const todayMenu = res.at(i);
+      const todayMenu = res.at(today.getDay() - 1);
       const score = scoring(todayMenu);
 
       todayMenu.forEach((value) => {
@@ -116,28 +106,44 @@ const weeklyScrap = function (rtm, channel) {
 
       menu = menu.substring(0, menu.length - 2);
 
-      switch (i) {
-        case 0:
-          rtm.sendMessage(`월요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        case 1:
-          rtm.sendMessage(`화요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        case 2:
-          rtm.sendMessage(`수요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        case 3:
-          rtm.sendMessage(`목요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        case 4:
-          rtm.sendMessage(`금요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        default:
-          rtm.sendMessage("error", channel);
-          break;
+      // 메뉴 및 별점 출력
+      rtm.sendMessage(`${menu}\n${scoreToStar(score)}`, channel);
+      return Promise.resolve("success");
+    });
+    return Promise.resolve("error");
+  } catch (error) {
+    console.error("error");
+    return Promise.resolve("error");
+  }
+};
+
+const weeklyScrap = function (rtm, channel) {
+  console.log("주간메뉴 출력");
+  try {
+    webScraping().then((res) => {
+      let i;
+      for (i = 0; i < 5; i += 1) {
+        let menu = "";
+        const todayMenu = res.at(i);
+        const score = scoring(todayMenu);
+
+        todayMenu.forEach((value) => {
+          menu += `${value}, `;
+        });
+
+        menu = menu.substring(0, menu.length - 2);
+        rtm.sendMessage(
+          `${dayDict[i]}\n${menu}\n${scoreToStar(score)}`,
+          channel
+        );
       }
-    }
-  });
+      return Promise.resolve("success");
+    });
+    return Promise.resolve("error");
+  } catch (error) {
+    console.error("error");
+    return Promise.resolve("error");
+  }
 };
 
 module.exports = {
