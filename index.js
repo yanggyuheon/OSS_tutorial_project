@@ -21,10 +21,12 @@ try {
 // 학과 배열
 
 const classarr = [];
+const classarr2 = []; // 대소문자, 띄워쓰기 적용된 dept text
 try {
   let i = 0;
   lineReader.eachLine("./dept.txt", (line) => {
     const string = line.substr(0, line.indexOf("-") - 1);
+    classarr2[i] = string;
     const stringlower = string.toLocaleLowerCase();
     const laststring = stringlower.replace(/ /g, "");
     classarr[i] = laststring;
@@ -66,7 +68,7 @@ rtm.on("message", (message) => {
         const resulttext = data.toString().slice(0, data.toString().length - 2);
 
         const idx2 = classarr.indexOf(resulttext);
-        rtm.sendMessage(`${resulttext}을 말씀하시는 건가요?\n`, channel);
+        rtm.sendMessage(`${classarr2[idx2]}을 말씀하시는 건가요?\n`, channel);
         classresult(rtm, resulttext, idx2, channel);
       });
 
