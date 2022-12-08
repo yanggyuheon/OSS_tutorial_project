@@ -62,7 +62,7 @@ rtm.on("message", (message) => {
       case /^([1-9]|1[0-2])\/([1-9]|[12][0-9]|3[01])$/.test(text):
         haksa(rtm, channel, text);
         break;
-      case text === "오늘 밥 뭐야":
+      case text === "오늘 뭐 나와":
         if (flags === 2){
           scrap.todayScrap(rtm, channel);
           flags = 0
