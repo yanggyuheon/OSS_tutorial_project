@@ -26,6 +26,7 @@ jobs:
         run: |
           npm install mocha -g
           npm install dotenv
+          pip install jellyfish
           mocha feature1.spec.js
           mocha feature2.spec.js
           mocha feature3.spec.js
