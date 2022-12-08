@@ -30,7 +30,7 @@ const rtm = new RTMClient(token);
 let res;
 describe("테스트를 시작합니다", async () => {
   before(async () => {
-    res = await dept(rtm, channel, testText);
+    res = await dept.fsdept(rtm, channel, testText);
     return res;
   });
 
