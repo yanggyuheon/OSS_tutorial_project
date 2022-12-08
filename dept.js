@@ -21,16 +21,16 @@ const readTxtnSplit = function () {
 };
 
 const fsdept = function (rtm, channel, text) {
+  const [deptDict, deptUpperList, deptLowerList] = readTxtnSplit();
+  const compText = text.toLowerCase().replace(/ /g, "");
   try {
-    const [deptDict, deptUpperList, deptLowerList] = readTxtnSplit();
-    const compText = text.toLowerCase().replace(/ /g, "");
-
     if (deptLowerList.includes(compText) === true) {
       console.log(deptDict[compText]);
       rtm.sendMessage(
         `입력하신 학과의 정보는 ${deptDict[compText]}입니다.`,
         channel
       );
+      Promise.resolve("success");
     } else {
       // spawn을 통해 "python main.py" 명령어 실행 , python파일명, dept array, input dept text 순서
       const result = spawn("python3", ["./main.py", deptLowerList, compText]);
@@ -49,8 +49,8 @@ const fsdept = function (rtm, channel, text) {
       result.stderr.on("data", (data) => {
         console.log("error", data.toString());
       });
+      Promise.resolve("success");
     }
-    Promise.resolve("success");
   } catch (err) {
     console.error(err);
     Promise.resolve("error");
