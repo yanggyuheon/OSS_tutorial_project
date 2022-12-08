@@ -51,7 +51,6 @@ const fsdept = function (rtm, channel, text) {
       });
       Promise.resolve("success");
     }
-    console.error("sync error");
     Promise.resolve("error");
   } catch (err) {
     console.error(err);
