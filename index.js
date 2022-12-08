@@ -1,6 +1,5 @@
 const { RTMClient } = require("@slack/rtm-api");
 const fs = require("fs");
-const lineReader = require("line-reader"); // npm install line-reader
 const greeting = require("./greeting");
 const haksa = require("./haksa");
 const square = require("./square");
@@ -11,23 +10,6 @@ const scrap = require("./scrap");
 let token;
 try {
   token = fs.readFileSync("./token").toString("utf-8");
-} catch (err) {
-  console.error(err);
-}
-
-// 학과 배열
-const classarr = [];
-const classarr2 = []; // 대소문자, 띄어쓰기 적용된 dept text
-try {
-  let i = 0;
-  lineReader.eachLine("./dept.txt", (line) => {
-    const string = line.substr(0, line.indexOf("-") - 1);
-    classarr2[i] = string;
-    const stringlower = string.toLowerCase();
-    const laststring = stringlower.replace(/ /g, "");
-    classarr[i] = laststring;
-    i += 1;
-  });
 } catch (err) {
   console.error(err);
 }

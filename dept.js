@@ -33,7 +33,7 @@ const fsdept = function (rtm, channel, text) {
       Promise.resolve("success");
     } else {
       // spawn을 통해 "python main.py" 명령어 실행 , python파일명, dept array, input dept text 순서
-      const result = spawn("python3", ["./main.py", deptLowerList, compText]);
+      const result = spawn("find", ["./main.py", deptLowerList, compText]);
       // stdout의 'data'이벤트리스너로 실행결과를 받는다.
       result.stdout.on("data", (data) => {
         const resultText = data.toString().slice(0, data.toString().length - 2);
@@ -51,6 +51,8 @@ const fsdept = function (rtm, channel, text) {
       });
       Promise.resolve("success");
     }
+    console.error("sync error");
+    Promise.resolve("error");
   } catch (err) {
     console.error(err);
     Promise.resolve("error");
