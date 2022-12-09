@@ -7,6 +7,8 @@ const dept = require("./dept");
 require("dotenv").config();
 const scrap = require("./scrap");
 
+
+
 let token;
 try {
   token = fs.readFileSync("./token").toString("utf-8");
@@ -14,7 +16,7 @@ try {
   console.error(err);
 }
 
-// 학과 사무실, 식단을 입력받을때 사용하는 flags
+// 학과 사무실을 입력받을때 사용하는 flags
 let flags = 0;
 
 const rtm = new RTMClient(token);
@@ -24,7 +26,7 @@ rtm.start();
 rtm.on("message", (message) => {
   const { channel } = message;
   const { text } = message;
-
+  
   // switch문 정규식 사용을 위한 테스트 변경
   switch (true) {
     case flags === 1:
