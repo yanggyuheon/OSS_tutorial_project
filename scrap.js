@@ -37,7 +37,9 @@ async function webScraping() {
     const tmpList = [];
     getData = $(selectorFunc(i));
     getData.each(function () {
-      tmpList.push($(this).text());
+      if ($(this).text() !== "\n") {
+        tmpList.push($(this).text().replace("\n", ""));
+      }
     });
     res.push(tmpList.filter(Boolean));
   }

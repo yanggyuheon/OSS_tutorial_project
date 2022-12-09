@@ -1,5 +1,6 @@
+// npm i -S python-shell
+const pythonShell = require("python-shell"); 
 const fs = require("fs");
-const { spawn } = require("child_process");
 const lineReader = require("line-reader");
 
 // 정규식 + fs 버전
@@ -34,23 +35,31 @@ const fsdept = function (rtm, channel, text) {
       );
       return Promise.resolve("success");
     }
-    // spawn을 통해 "python main.py" 명령어 실행 , python파일명, dept array, input dept text 순서
-    // windows환경 spawn("py", ...), (ubuntu, linux, mac)환경 spawn("python3", ...)...
-    const result = spawn("python3", ["./main.py", deptLowerList, compText]);
-    // stdout의 'data'이벤트리스너로 실행결과를 받는다.
-    result.stdout.on("data", (data) => {
-      const resultText = data.toString().slice(0, data.toString().length - 2);
-      const idx = deptLowerList.indexOf(resultText);
 
-      console.log(deptDict[resultText]);
+    const options = {
+      mode: "text",
+      pythonPath: "",
+      pythonOptions: ["-u"],
+      scriptPath: "",
+      args: [deptLowerList, text.toLowerCase().replace(/ /g, "")],
+    };
+
+    pythonShell.PythonShell.run("main.py", options, (err, results) => {
+      if (err) {
+        console.error(err);
+        return Promise.resolve("error");
+      }
+      // results : object => string 타입으로 수정
+      const resultText = results.toString();
+
+      const idx2 = deptLowerList.indexOf(resultText);
+
+      console.log(deptDict[results]);
       rtm.sendMessage(
-        `${deptUpperList[idx]}을 말씀하시는 건가요?\n입력하신 학과의 정보는 ${deptDict[resultText]}입니다.`,
+        `${deptUpperList[idx2]}을 말씀하시는 건가요?\n입력하신 학과의 정보는 ${deptDict[results]}입니다.`,
         channel
       );
-    });
-    // 에러 발생 시, stderr의 'data'이벤트리스너로 실행결과를 받는다.
-    result.stderr.on("data", (data) => {
-      console.log("error", data.toString());
+      return Promise.resolve("success");
     });
     return Promise.resolve("success");
   } catch (err) {
