@@ -1,4 +1,4 @@
-name: jms_branch push test
+name: jms_branch mocha test
 
 on:
   push:
@@ -26,8 +26,10 @@ jobs:
         run: |
           npm install mocha -g
           npm install dotenv
+          pip install jellyfish
           mocha feature1.spec.js
           mocha feature2.spec.js
-          mocha feature4.spec.js
+          mocha feature3.spec.js
+          mocha feature4.5.spec.js
         env:
           CI: true
