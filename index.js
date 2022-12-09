@@ -13,14 +13,14 @@ const classresult = require("./class_result");
 require("dotenv").config();
 const scrap = require("./scrap");
 
-
-
 let token;
+
 try {
   token = fs.readFileSync("./token").toString("utf-8");
 } catch (err) {
   console.error(err);
 }
+
 
 // 학과 배열
 
@@ -52,9 +52,7 @@ rtm.start();
 rtm.on("message", (message) => {
   const { channel } = message;
   const { text } = message;
-  
-  // switch문 정규식 사용을 위한 테스트 변경
-  // case 별로 if문같이 사용
+
 
   if (flags === 1) {
     const idx = classarr.indexOf(text.toLowerCase().replace(/ /g, ""));
