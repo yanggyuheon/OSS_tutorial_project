@@ -69,9 +69,16 @@ rtm.on("message", (message) => {
         channel
       );
       break;
+    case text === "학사 일정":
+        flags = 3;
+        rtm.sendMessage(
+          "mm/dd 의 형태로 원하시는 날짜를 입력해주세요",
+          channel
+        );
+        break;
     default:
       rtm.sendMessage(
-        "학과 사무실 안내를 받으시려면 : 학과 안내\n진수원 식당 안내를 받으시려면 : 식단 안내\n인사를 하고 싶으시면 : HI\n제곱을 구하시고 싶으시면 : 숫자",
+        "학과 사무실 안내를 받으시려면 : 학과 안내\n진수원 식당 안내를 받으시려면 : 식단 안내\n인사를 하고 싶으시면 : HI\n제곱을 구하시고 싶으시면 : 숫자 \n 학사일정안내를 받고 싶으시면 : 학사 일정",
         channel
       );
       break;
