@@ -6,6 +6,7 @@ const Classresult = [
   "College of Engineering Building 4, 212",
   "College of Engineering Building 6, 999",
 ];
+
 try {
   let i = 0;
   lineReader.eachLine("./dept.txt", (line) => {

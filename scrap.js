@@ -17,6 +17,14 @@ function selectorFunc(number = 0) {
   return str;
 }
 
+const dayDict = {
+  0: "월요일",
+  1: "화요일",
+  2: "수요일",
+  3: "목요일",
+  4: "금요일",
+};
+
 async function webScraping() {
   const url = "https://sobi.chonbuk.ac.kr/menu/week_menu.php";
   const res = [];
@@ -82,13 +90,15 @@ function scoreToStar(score) {
 
 const todayScrap = function (rtm, channel) {
   console.log("일간메뉴 출력");
-  if (today.getDay() === 0 || today.getDay() === 6) {
-    rtm.sendMessage("주말에는 밥 안팔아요", channel);
-  } else {
+  try {
     webScraping().then((res) => {
-      let menu = ""; // 메뉴를 한 줄로 저장할 변수
+      if (today.getDay() === 0 || today.getDay() === 6) {
+        rtm.sendMessage("주말에는 밥 안팔아요", channel);
+        return Promise.resolve("success");
+      }
+      let menu = "";
       const todayMenu = res.at(today.getDay() - 1);
-      const score = scoring(todayMenu); // 기본 점수 1점으로
+      const score = scoring(todayMenu);
 
       todayMenu.forEach((value) => {
         menu += `${value}, `;
@@ -98,47 +108,41 @@ const todayScrap = function (rtm, channel) {
 
       // 메뉴 및 별점 출력
       rtm.sendMessage(`${menu}\n${scoreToStar(score)}`, channel);
+      return Promise.resolve("success");
     });
+    return Promise.resolve("success");
+  } catch (error) {
+    console.error("error");
+    return Promise.resolve("error");
   }
 };
 
 const weeklyScrap = function (rtm, channel) {
   console.log("주간메뉴 출력");
-  webScraping().then((res) => {
-    let i;
-    for (i = 0; i < 5; i += 1) {
-      let menu = "";
-      const todayMenu = res.at(i);
-      const score = scoring(todayMenu);
+  try {
+    webScraping().then((res) => {
+      let i;
+      for (i = 0; i < 5; i += 1) {
+        let menu = "";
+        const todayMenu = res.at(i);
+        const score = scoring(todayMenu);
 
-      todayMenu.forEach((value) => {
-        menu += `${value}, `;
-      });
+        todayMenu.forEach((value) => {
+          menu += `${value}, `;
+        });
 
-      menu = menu.substring(0, menu.length - 2);
-
-      switch (i) {
-        case 0:
-          rtm.sendMessage(`월요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        case 1:
-          rtm.sendMessage(`화요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        case 2:
-          rtm.sendMessage(`수요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        case 3:
-          rtm.sendMessage(`목요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        case 4:
-          rtm.sendMessage(`금요일 \n${menu}\n${scoreToStar(score)}`, channel);
-          break;
-        default:
-          rtm.sendMessage("error", channel);
-          break;
+        menu = menu.substring(0, menu.length - 2);
+        rtm.sendMessage(
+          `${dayDict[i]}\n${menu}\n${scoreToStar(score)}`,
+          channel
+        );
       }
-    }
-  });
+    });
+    return Promise.resolve("success");
+  } catch (error) {
+    console.error("error");
+    return Promise.resolve("error");
+  }
 };
 
 module.exports = {
