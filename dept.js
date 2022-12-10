@@ -1,4 +1,5 @@
-const pythonShell = require("python-shell"); // npm i -S python-shell
+// npm i -S python-shell
+const pythonShell = require("python-shell"); 
 const fs = require("fs");
 const lineReader = require("line-reader");
 
