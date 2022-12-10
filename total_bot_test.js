@@ -6,6 +6,7 @@ const { RTMClient } = require("@slack/rtm-api");
 const fs = require("fs");
 
 const testchannel = "C04F93CQ6MN";
+// 여기에 본인이 사용하는 testuid를 넣어주세요 그리고 실행
 const testuid = "U04C77L0000"
 let token;
 const channel = "D04F5HP28NL";
