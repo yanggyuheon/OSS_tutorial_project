@@ -7,8 +7,6 @@ const dept = require("./dept");
 require("dotenv").config();
 const scrap = require("./scrap");
 
-
-
 let token;
 try {
   token = fs.readFileSync("./token").toString("utf-8");
@@ -26,7 +24,7 @@ rtm.start();
 rtm.on("message", (message) => {
   const { channel } = message;
   const { text } = message;
-  
+
   // switch문 정규식 사용을 위한 테스트 변경
   switch (true) {
     case flags === 1:
@@ -40,7 +38,12 @@ rtm.on("message", (message) => {
       greeting(rtm, channel);
       break;
     case /^([1-9]|1[0-2])\/([1-9]|[12][0-9]|3[01])$/.test(text):
-      haksa(rtm, channel, text);
+      if (flags === 3) {
+        haksa(rtm, channel, text);
+        flags = 0;
+      } else {
+        rtm.sendMessage("학사 일정을 먼저 입력해주세요", channel);
+      }
       break;
     case text === "오늘 밥 뭐야":
       if (flags === 2) {
@@ -71,15 +74,13 @@ rtm.on("message", (message) => {
       break;
 
     case text === "학사 일정":
-        flags = 3;
-        rtm.sendMessage(
-          "mm/dd 의 형태로 원하시는 날짜를 입력해주세요",
-          channel
-        );
-        break;
+      flags = 3;
+      rtm.sendMessage("mm/dd 의 형태로 원하시는 날짜를 입력해주세요", channel);
+      break;
     default:
       rtm.sendMessage(
-        "학과 사무실 안내를 받으시려면 : 학과 안내\n진수원 식당 안내를 받으시려면 : 식단 안내\n인사를 하고 싶으시면 : HI\n제곱을 구하시고 싶으시면 : 숫자 \n 학사일정안내를 받고 싶으시면 : 학사 일정",channel
+        "학과 사무실 안내를 받으시려면 : 학과 안내\n진수원 식당 안내를 받으시려면 : 식단 안내\n인사를 하고 싶으시면 : HI\n제곱을 구하시고 싶으시면 : 숫자 \n 학사일정안내를 받고 싶으시면 : 학사 일정",
+        channel
       );
       break;
   }
