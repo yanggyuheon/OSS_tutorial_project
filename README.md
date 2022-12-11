@@ -16,10 +16,12 @@
 git clone https://github.com/hellemon/OSS_tutorial_project.git
 ```
 
+
 2. npm install
 
 ```termianl
 $ npm install
+
 ```
 
 3. slack-bot token 파일 생성하기
@@ -71,9 +73,11 @@ $ node index.js
 
 단, 입력 날짜의 학사 일정이 없는 경우 `"mm/dd는 일정이 없습니다."`를 응답합니다.
 
+
 | 학사 일정 입력 후 mm/dd                                                                                                   | 학사 일정 입력없이 mm/dd                                                                                             |
 | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | ![학사일정_mm dd](https://user-images.githubusercontent.com/112867282/206859745-7ce65663-a6aa-4c85-a3cc-ef1a4ebdadc1.png) | ![학사일정x](https://user-images.githubusercontent.com/112867282/206899252-30061e15-a80b-4222-858c-2fe1d22aaaa7.png) |
+
 
 ---
 
