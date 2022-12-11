@@ -2,13 +2,11 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    mocha: true,
   },
-  extends: ['airbnb-base'],
-  overrides: [
-  ],
+  extends: ["airbnb-base", "prettier"],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: "latest",
   },
-  rules: {
-  },
+  rules: {},
 };

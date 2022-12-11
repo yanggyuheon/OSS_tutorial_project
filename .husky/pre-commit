@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-eslint . --ext .js
+echo "Husky"
+# eslint . --ext .js
 npx lint-staged
